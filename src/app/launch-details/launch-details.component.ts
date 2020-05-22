@@ -32,18 +32,12 @@ export class LaunchDetailsComponent implements OnInit {
 
         // clone the clicked thumbnail and load it in the main image area
         $('.thumbnail-wrapper').click(function(){
-          let $changeImage = $(this).children("img").clone();
-          $('.gallery-image').html('').append($changeImage)
+          $('img.gallery-image').attr('src', $(this).children('img').attr('src'));
         });
 
-        let imageCount = 0; 
         let thumbnailOffset = 0; // keeps the offset for the thumbnail-slider
         let $thumbnails = $('.thumbnail-wrapper'); 
-
-        // count the available images for the current launch
-        $thumbnails.map(function(){
-          if ($(this).data('number') > imageCount) {imageCount = $(this).data('number');}
-        });
+        let imageCount = $thumbnails.length; 
 
         // all thumbnails are initially hidden, so run the slideWrapper once with zero offset to show the first (max. three) thumbnails
         slideWrapper(thumbnailOffset);
@@ -53,8 +47,11 @@ export class LaunchDetailsComponent implements OnInit {
           $('#thumbnails-slide-right').addClass('disabled');
         }
 
+        $('#thumbnails-slide-left').addClass('disabled');
+
         // click on the left arrow
         $('#thumbnails-slide-left').click(function(){
+
           if ($(this).hasClass('disabled')) { return false; }
 
           slideWrapper(--thumbnailOffset);

@@ -1,43 +1,49 @@
 <ng-container *ngIf="launchDetails$ | async as launchDetails">
-  <div class="wrapper">
-    <div class="header"><span id="button-back" [routerLink]="['/']" title="Back to list"><</span>&nbsp;{{ launchDetails.mission_name }}</div>
-    <section class="launch-description">
-      <div class="inner-content">
-        <mat-card >
-          <img
-          height="256"
-          width="256"
-          mat-card-image
-          [src]="launchDetails.links.mission_patch"
-          alt="Mission patch of {{ launchDetails.mission_name }}"
-          />
-          <mat-card-content>
-            <p>{{ launchDetails.details }}</p>
-          </mat-card-content>
-        </mat-card>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1><span id="button-back" [routerLink]="['/']" title="Back to list" class="fa fa-chevron-left"></span>&nbsp;{{ launchDetails.mission_name }}</h1>
       </div>
-    </section>
-    <section class="gallery-image">
-      <img [src]="launchDetails.links.flickr_images[0]" />
-    </section>
-
-    <div class="gallery-controls">
-      <div><div id="thumbnails-slide-left" class="arrow arrow-left disabled"></div></div> 
-      <div 
-      *ngFor="let pic of launchDetails.links.flickr_images; let i=index"
-      [hidden]=true 
-      [attr.data-number]="i" 
-      class="thumbnail-wrapper">
-      <img
-      class="thumbnail"
-      [src]="pic"
-      alt="Picture of {{ launchDetails.mission_name }}"
-      height="300"
-      width="300"
-      loading="lazy"
-      />
     </div>
-    <div><div id="thumbnails-slide-right" class="arrow arrow-right"></div></div>  
+    <div class="row">
+      <div class="col-6">
+        <div class="card" style="width: 30rem;">
+          <img [src]="launchDetails.links.mission_patch" class="card-img-top" alt="Mission patch of {{ launchDetails.mission_name }}">
+          <div class="card-body">
+            <p class="card-text">{{ launchDetails.details }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col">
+            <img [src]="launchDetails.links.flickr_images[0]" class="gallery-image img-fluid rounded mx-auto d-block" alt="Main image">
+          </div>
+        </div>
+        <div class="row thumbnails">
+          <div class="col">
+            <ul class="list-group list-group-horizontal">
+              <li id="thumbnails-slide-left" class="slider-button list-group-item align-items-center"><span class="fa fa-chevron-left fa-3x"></span></li>
+
+              <li 
+              *ngFor="let pic of launchDetails.links.flickr_images; let i=index"
+              [attr.data-number]="i" 
+              class="thumbnail-wrapper list-group-item">
+              <img
+              class="thumbnail img-thumbnail"
+              [src]="pic"
+              alt="Picture of {{ launchDetails.mission_name }}"
+              height="300"
+              width="300"
+              loading="lazy"
+              />
+            </li>
+
+            <li id="thumbnails-slide-right" class="slider-button list-group-item align-items-center"><span class="fa fa-chevron-right fa-3x"></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </ng-container>

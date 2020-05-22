@@ -27,16 +27,13 @@ export class LaunchDetailsComponent implements OnInit {
 
         // slides the thumbnails by hiding all at first and then showing those between the offset and offset + 3
         function slideWrapper(offset) {
-          console.log($thumbnails);
           $thumbnails.hide().filter(index => index >= offset && index < offset + 3).show();
         }
 
         // clone the clicked thumbnail and load it in the main image area
         $('.thumbnail-wrapper').click(function(){
           let $changeImage = $(this).children("img").clone();
-
           $('.gallery-image').html('').append($changeImage)
-          $('gallery-image img').attr('src', $(this).children('img').attr('src'));
         });
 
         let imageCount = 0; 

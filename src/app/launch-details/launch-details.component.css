@@ -1,7 +1,109 @@
-.photo-grid {
-  padding-top: 30px;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, 300px);
-  justify-content: center;
+.header {
+	grid-area: hd;
+	font-weight: bold;
+	font-size: 3em;
+	padding-left: 1em;
+}
+
+#button-back {
+	cursor: pointer;
+}
+
+.mission-title {
+	font-weight: bold;
+	font-size: 3em;
+	margin-left: 1em;
+}
+
+.gallery-controls {
+	grid-area: gc;
+}
+.gallery-image {
+	grid-area: gi;
+}
+.launch-description {
+	grid-area: ld;
+}
+
+.mat-card {
+	box-shadow: none;
+	text-align: center;
+}
+
+.mat-card > img {
+	width: auto;
+}
+
+.mat-card-content {
+	text-align: left;
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+	grid-auto-rows: minmax(50px, auto);
+	grid-template-areas: 
+	"hd hd hd hd hd hd hd hd hd"
+	"ld ld ld ld gi gi gi gi gi"
+	"ld ld ld ld gi gi gi gi gi"
+	"ld ld ld ld gc gc gc gc gc";
+	grid-row-gap: 2em;
+}
+
+.inner-content {
+	margin: 0 5em 0em 5em;
+	padding: 5em 1em 5em 1em;
+	border: 1px solid rgba(0,0,0,.2);
+	border-top: 10px solid rgba(0,0,0,.2);
+	border-bottom: 10px solid rgba(0,0,0,.2);
+}
+
+.gallery-image {
+	text-align: center;
+}
+
+.gallery-image > img {
+	max-height: 300px;
+	width: auto;
+}
+
+/* TODO thumbnails that are too wide push the right button too far */
+.gallery-controls {
+	display: grid;
+	grid-template-columns: 1fr 3fr 3fr 3fr 1fr;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+img.thumbnail {
+	max-height: 180px;
+	width: auto;
+}
+
+.thumbnail-wrapper {
+	text-align: center;
+	cursor: pointer;
+}
+
+.arrow {
+	width: 2vw;
+	height: 2vw;
+	border: 1vw solid;
+	border-color: #000 transparent transparent #000;
+	margin-top: 35px;
+	cursor: pointer;
+}
+
+.arrow.disabled {
+	cursor: not-allowed;
+	border-color: #E6E4E1 transparent transparent #E6E4E1;
+}
+
+.arrow-left {
+	transform: rotate(-45deg);
+	margin-left: 50px;
+}
+
+.arrow-right {
+	transform: rotate(135deg);
 }

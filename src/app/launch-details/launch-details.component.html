@@ -1,29 +1,43 @@
 <ng-container *ngIf="launchDetails$ | async as launchDetails">
-  <section style="padding-top: 20px;">
-    <mat-card style="width: 400px; margin: auto;">
-      <mat-card-header>
-        <mat-card-title>{{ launchDetails.mission_name }}</mat-card-title>
-      </mat-card-header>
+  <div class="wrapper">
+    <div class="header"><span id="button-back" [routerLink]="['/']" title="Back to list"><</span>&nbsp;{{ launchDetails.mission_name }}</div>
+    <section class="launch-description">
+      <div class="inner-content">
+        <mat-card >
+          <img
+          height="256"
+          width="256"
+          mat-card-image
+          [src]="launchDetails.links.mission_patch"
+          alt="Mission patch of {{ launchDetails.mission_name }}"
+          />
+          <mat-card-content>
+            <p>{{ launchDetails.details }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </section>
+    <section class="gallery-image">
+      <img [src]="launchDetails.links.flickr_images[0]" />
+    </section>
+
+    <div class="gallery-controls">
+      <div><div id="thumbnails-slide-left" class="arrow arrow-left disabled"></div></div> 
+      <div 
+      *ngFor="let pic of launchDetails.links.flickr_images; let i=index"
+      [hidden]=true 
+      [attr.data-number]="i" 
+      class="thumbnail-wrapper">
       <img
-        height="256"
-        width="256"
-        mat-card-image
-        [src]="launchDetails.links.mission_patch"
-        alt="Mission patch of {{ launchDetails.mission_name }}"
-      />
-      <mat-card-content>
-        <p>{{ launchDetails.details }}</p>
-      </mat-card-content>
-    </mat-card>
-  </section>
-  <section class="photo-grid">
-    <img
-      *ngFor="let pic of launchDetails.links.flickr_images"
+      class="thumbnail"
       [src]="pic"
       alt="Picture of {{ launchDetails.mission_name }}"
       height="300"
       width="300"
       loading="lazy"
-    />
-  </section>
+      />
+    </div>
+    <div><div id="thumbnails-slide-right" class="arrow arrow-right"></div></div>  
+  </div>
+</div>
 </ng-container>

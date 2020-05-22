@@ -20,14 +20,17 @@
             {{ launch.launch_date_utc }}</mat-card-subtitle
           >
         </mat-card-header>
+        <div class="image-wrapper loader">
         <img
           height="300"
           width="300"
           mat-card-image
           loading="lazy"
           [src]="launch.links.flickr_images[0]"
+          (load)="removePlaceholder($event)"
           alt="Photo of {{ launch.mission_name }}"
         />
+      </div>
       </mat-card>
     </section>
   </main>

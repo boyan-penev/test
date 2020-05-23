@@ -19,11 +19,16 @@
     justify-content: center;
 }
 
-.slider-button, .thumbnail-wrapper {
+.thumbnails {
 	cursor: pointer;
 }
 
 .slider-button.disabled {
 	cursor: not-allowed;
 	color: #E6E4E1;
+}
+
+.img-thumbnail {
+	height: 5em;
+	width: auto;
 }

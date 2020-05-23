@@ -17,33 +17,43 @@
       <div class="col-6">
         <div class="row">
           <div class="col">
-            <img [src]="launchDetails.links.flickr_images[0]" class="gallery-image img-fluid rounded mx-auto d-block" alt="Main image">
+            <img [src]="mainImage" class="img-fluid rounded mx-auto d-block" alt="Picture of {{ launchDetails.mission_name }}">
           </div>
         </div>
         <div class="row thumbnails">
           <div class="col">
             <ul class="list-group list-group-horizontal">
-              <li id="thumbnails-slide-left" class="slider-button list-group-item align-items-center"><span class="fa fa-chevron-left fa-3x"></span></li>
-
               <li 
-              *ngFor="let pic of launchDetails.links.flickr_images; let i=index"
-              [attr.data-number]="i" 
-              class="thumbnail-wrapper list-group-item">
-              <img
-              class="thumbnail img-thumbnail"
-              [src]="pic"
-              alt="Picture of {{ launchDetails.mission_name }}"
-              height="300"
-              width="300"
-              loading="lazy"
-              />
+              [ngClass]="{'disabled' : thumbnailOffset == 0}"
+              (click)="slideThumbnails('left')"
+              class="slider-button list-group-item align-items-center"
+              >
+                <span class="fa fa-chevron-left fa-3x"></span>
+              </li>
+              <li 
+              *ngFor="let image of launchImages; let i=index"
+              (click)="changeMainImage()"
+              [hidden]="i < thumbnailOffset || i >= thumbnailOffset + 3"
+              class="list-group-item"
+              >
+                <img
+                class="img-thumbnail"
+                [src]="image"
+                alt="Picture of {{ launchDetails.mission_name }}"
+                loading="lazy"
+                />
             </li>
-
-            <li id="thumbnails-slide-right" class="slider-button list-group-item align-items-center"><span class="fa fa-chevron-right fa-3x"></span></li>
-          </ul>
-        </div>
-      </div>
+            <li 
+            [ngClass]="{'disabled' : thumbnailOffset == imagesCount - 3}"
+            (click)="slideThumbnails('right')"
+            class="slider-button list-group-item align-items-center"
+            >
+              <span class="fa fa-chevron-right fa-3x"></span>
+            </li>
+      </ul>
     </div>
   </div>
+</div>
+</div>
 </div>
 </ng-container>

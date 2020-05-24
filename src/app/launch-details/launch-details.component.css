@@ -19,7 +19,7 @@
     justify-content: center;
 }
 
-.thumbnails {
+.thumbnails, #button-back {
 	cursor: pointer;
 }
 

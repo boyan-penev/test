@@ -1,5 +1,9 @@
+import { Apollo } from 'apollo-angular';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
+import { MatCardModule } from '@angular/material/card';
+import { launchReducers } from '../store/reducers';
 import { LaunchDetailsComponent } from './launch-details.component';
 
 describe('LaunchDetailsComponent', () => {
@@ -8,7 +12,13 @@ describe('LaunchDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LaunchDetailsComponent ]
+      declarations: [ LaunchDetailsComponent ],
+      imports: [
+        RouterTestingModule,
+        StoreModule,
+        MatCardModule
+      ],
+      providers: [ Apollo ]
     })
     .compileComponents();
   }));

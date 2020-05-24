@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit} from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { map, switchMap } from "rxjs/operators";
 import { LaunchDetailsGQL } from "../services/spacexGraphql.service";
+import { Router } from '@angular/router';
 @Component({
   selector: "app-launch-details",
   templateUrl: "./launch-details.component.html",

@@ -1,5 +1,7 @@
 import { LaunchFacadeService } from "./../services/launch-facade.service";
 import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
 	selector: "app-launch-list",

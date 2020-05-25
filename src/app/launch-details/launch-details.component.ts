@@ -27,7 +27,7 @@ export class LaunchDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => { this.launchId = paramMap.get('id'); });
-    this.launchDetails$ = this.detailsFacade.launchDetailsFacade(this.launchId);
+    this.launchDetails$ = this.detailsFacade.launchDetailsFacade(this.launchId); // TODO: implement the StoreCache in effects
     this.launchDetails$.subscribe(launch => this.setLaunchImages(launch.links.flickr_images));
     this.thumbnailOffset = 0;
   }

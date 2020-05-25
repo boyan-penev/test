@@ -1,7 +1,7 @@
 import { Apollo } from 'apollo-angular';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { MatCardModule } from '@angular/material/card';
 import { launchReducers } from '../store/reducers';
 import { LaunchDetailsComponent } from './launch-details.component';
@@ -15,10 +15,10 @@ describe('LaunchDetailsComponent', () => {
       declarations: [ LaunchDetailsComponent ],
       imports: [
         RouterTestingModule,
-        StoreModule,
+        StoreModule.forRoot(launchReducers),
         MatCardModule
       ],
-      providers: [ Apollo ]
+      providers: [ Apollo, Store ]
     })
     .compileComponents();
   }));

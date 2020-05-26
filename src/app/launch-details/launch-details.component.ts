@@ -26,6 +26,7 @@ export class LaunchDetailsComponent implements OnInit {
     ) {}
 
   ngOnInit() {
+    // get the id for the launch and set the variables for the view: details, images and finally the offset for the thumbnails to 0
     this.route.paramMap.subscribe(paramMap => { this.launchId = paramMap.get('id'); });
     this.launchDetails$ = this.detailsFacade.launchDetailsFacade(this.launchId); // TODO: implement the StoreCache in effects
     this.launchDetails$.subscribe(launch => this.setLaunchImages(launch.links.flickr_images));
@@ -33,15 +34,26 @@ export class LaunchDetailsComponent implements OnInit {
   }
 
   setLaunchImages(images): void {
+    // if there are no images for the launch, set a dummy image with an empty string as "src" in order to display the "alt" attribute
+    if (images.length == 0) {
+      this.mainImage = "";
+      this.launchImages = [""];
+      this.imagesCount = 1;
+      return;
+    }
+
+    // ...otherwise- set the images for the gallery
     this.mainImage = images[0];
     this.launchImages = images;
     this.imagesCount = images.length;
   }
   
+  // changes the offset for the visible thumbnails based on which slide-button (arrow) was clicked
   slideThumbnails(direction) {
     if (direction == 'left') { this.thumbnailOffset--; } else if (direction == 'right') { this.thumbnailOffset++; }
   }
 
+  // changes the main image based on a click on a thumbnail
   changeMainImage() {
     this.mainImage = (event.currentTarget as HTMLLIElement).children[0].getAttribute('src');
   }

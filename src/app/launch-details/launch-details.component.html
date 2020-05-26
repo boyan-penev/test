@@ -20,7 +20,7 @@
             <img [src]="mainImage" class="img-fluid rounded mx-auto d-block" alt="Picture of {{ launchDetails.mission_name }}">
           </div>
         </div>
-        <div class="row thumbnails">
+        <div *ngIf="launchImages.length > 1" class="row thumbnails">
           <div class="col">
             <ul class="list-group list-group-horizontal">
               <li 
